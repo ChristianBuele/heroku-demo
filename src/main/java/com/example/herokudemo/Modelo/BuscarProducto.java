@@ -1,4 +1,4 @@
-package com.example.demo.Modelo;
+package com.example.herokudemo.Modelo;
 
 public class BuscarProducto {
 	private String nombre_producto;

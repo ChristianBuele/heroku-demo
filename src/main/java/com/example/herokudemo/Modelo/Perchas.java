@@ -1,4 +1,4 @@
-package com.example.demo.Modelo;
+package com.example.herokudemo.Modelo;
 
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;

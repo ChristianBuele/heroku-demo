@@ -1,4 +1,4 @@
-package com.example.demo.servicio;
+package com.example.herokudemo.servicio;
 
 import java.util.List;
 
@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.demo.Modelo.BuscarProducto;
-import com.example.demo.Modelo.Categoria;
-import com.example.demo.Modelo.Estado;
-import com.example.demo.Modelo.Producto;
-import com.example.demo.Repositorio.Repositorio;
+import com.example.herokudemo.Repositorio.Repositorio;
+import com.example.herokudemo.Modelo.Categoria;
+import com.example.herokudemo.Modelo.Estado;
+import com.example.herokudemo.Modelo.Producto;
+
+
 
 @Service
 public class ProductoServicioImplementado implements ProductoServicio {

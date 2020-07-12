@@ -1,4 +1,4 @@
-package com.example.demo.Controlador;
+package com.example.herokudemo.Controlador;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,17 +26,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.Modelo.BuscarProducto;
-import com.example.demo.Modelo.Categoria;
-import com.example.demo.Modelo.Estado;
-import com.example.demo.Modelo.Inventario;
-import com.example.demo.Modelo.Producto;
-import com.example.demo.Modelo.ProductoGI;
-import com.example.demo.Modelo.Seccion;
-import com.example.demo.Modelo.Ubicacion;
-import com.example.demo.Repositorio.Repositorio;
-import com.example.demo.servicio.ProductoServicio;
-import com.example.demo.servicio.ProductoServicioImplementado;
+import com.example.herokudemo.Repositorio.Repositorio;
+import com.example.herokudemo.servicio.ProductoServicio;
+import com.example.herokudemo.Modelo.BuscarProducto;
+import com.example.herokudemo.Modelo.Categoria;
+import com.example.herokudemo.Modelo.Estado;
+import com.example.herokudemo.Modelo.Inventario;
+import com.example.herokudemo.Modelo.Producto;
 import com.sun.el.parser.ParseException;
 
 import org.springframework.web.bind.annotation.CrossOrigin;

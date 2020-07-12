@@ -1,4 +1,4 @@
-package com.example.demo.Repositorio;
+package com.example.herokudemo.Repositorio;
 
 import java.util.List;
 
@@ -7,11 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.Modelo.BuscarProducto;
-import com.example.demo.Modelo.Categoria;
-import com.example.demo.Modelo.Estado;
-import com.example.demo.Modelo.Producto;
-import com.example.demo.Modelo.Ubicacion;
+import com.example.herokudemo.Modelo.Estado;
+import com.example.herokudemo.Modelo.Categoria;
+import com.example.herokudemo.Modelo.Producto;
+
 
 
 

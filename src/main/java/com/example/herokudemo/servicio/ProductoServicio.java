@@ -1,11 +1,11 @@
-package com.example.demo.servicio;
+package com.example.herokudemo.servicio;
 
 import java.util.List;
 
-import com.example.demo.Modelo.BuscarProducto;
-import com.example.demo.Modelo.Categoria;
-import com.example.demo.Modelo.Estado;
-import com.example.demo.Modelo.Producto;
+import com.example.herokudemo.Modelo.BuscarProducto;
+import com.example.herokudemo.Modelo.Categoria;
+import com.example.herokudemo.Modelo.Estado;
+import com.example.herokudemo.Modelo.Producto;
 
 public interface ProductoServicio {
 	public Producto updateStock(int id,int cantidad);
