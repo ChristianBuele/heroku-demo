@@ -1,13 +1,13 @@
-package com.example.demo;
+package com.example.herokudemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GestioDeInventarioApplication {
+public class HerokuDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GestioDeInventarioApplication.class, args);
+		SpringApplication.run(HerokuDemoApplication.class, args);
 	}
 
 }
