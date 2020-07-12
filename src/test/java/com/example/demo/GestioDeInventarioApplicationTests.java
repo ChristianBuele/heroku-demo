@@ -1,10 +1,10 @@
-package com.example.herokudemo;
+package com.example.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HerokuDemoApplicationTests {
+class GestioDeInventarioApplicationTests {
 
 	@Test
 	void contextLoads() {
