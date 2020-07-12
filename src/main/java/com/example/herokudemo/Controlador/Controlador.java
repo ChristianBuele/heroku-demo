@@ -229,6 +229,7 @@ public static Date ParseFecha(String fecha) throws java.text.ParseException
     Date fechaDate = null;
     fechaDate = formato.parse(fecha);
     return fechaDate;
+    
 }
 
 public Producto actualizarProducto(Producto producto) {
@@ -238,13 +239,16 @@ public Producto actualizarProducto(Producto producto) {
 RepositorioUsuario repoUsuario;
 
 @GetMapping(value = "/{correo}/contra")
-public ResponseEntity<Usuario> login(@PathVariable  String correo,@RequestParam(name = "contra", required = true) String contra) {
+public ResponseEntity<List<Usuario>>login(@PathVariable  String correo,@RequestParam(name = "contra", required = true) String contra) {
 	System.out.println("Cuscando correo "+correo);
+	List<Usuario> x=new ArrayList<Usuario>();
 	Usuario salida= repoUsuario.findByCorreo(correo);
 	if(salida!=null) {
 		System.out.println("el usuario tiene conta "+salida.getContraseña());
+		
 		if(contra.equals(salida.getContraseña())) {
-			return ResponseEntity.ok(salida);
+			x.add(salida);
+			return ResponseEntity.ok(x);
 		}
 	}
 	return null;
