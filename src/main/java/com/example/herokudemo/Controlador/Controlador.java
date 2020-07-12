@@ -27,12 +27,14 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.herokudemo.Repositorio.Repositorio;
+import com.example.herokudemo.Repositorio.RepositorioUsuario;
 import com.example.herokudemo.servicio.ProductoServicio;
 import com.example.herokudemo.Modelo.BuscarProducto;
 import com.example.herokudemo.Modelo.Categoria;
 import com.example.herokudemo.Modelo.Estado;
 import com.example.herokudemo.Modelo.Inventario;
 import com.example.herokudemo.Modelo.Producto;
+import com.example.herokudemo.Modelo.Usuario;
 import com.sun.el.parser.ParseException;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -206,6 +208,7 @@ public ResponseEntity<List<Producto>> buscarProductosCaducados() throws java.tex
 	products=servicios.findAll();
 	Producto producto;
 	for	(int i=0;i<products.size();i++) {
+		System.out.println("viendo caducados");
 		fecha=ParseFecha(products.get(i).getFecha_expiracion_producto());
 		if(fechaActual.compareTo(fecha)>0 && (products.get(i).getEstado().getId_estado()==1 || products.get(i).getEstado().getId_estado()==3)) {
 			Producto pro=new Producto();
@@ -230,6 +233,21 @@ public static Date ParseFecha(String fecha) throws java.text.ParseException
 
 public Producto actualizarProducto(Producto producto) {
 	return servicios.save(producto);
+}
+@Autowired
+RepositorioUsuario repoUsuario;
+
+@GetMapping(value = "/{correo}/contra")
+public ResponseEntity<Usuario> login(@PathVariable  String correo,@RequestParam(name = "contra", required = true) String contra) {
+	System.out.println("Cuscando correo "+correo);
+	Usuario salida= repoUsuario.findByCorreo(correo);
+	if(salida!=null) {
+		System.out.println("el usuario tiene conta "+salida.getContraseña());
+		if(contra.equals(salida.getContraseña())) {
+			return ResponseEntity.ok(salida);
+		}
+	}
+	return null;
 }
 	/* @GetMapping(value = "/{id}/cantidad")
 	    public ResponseEntity<ProductoGI> venderProduct(@PathVariable  int id ,@RequestParam(name = "cantidad", required = true) Integer cantidad){
@@ -281,15 +299,15 @@ public Producto actualizarProducto(Producto producto) {
 
 	/*
 	 * esta consulta si vale
-	 * http://localhost:8081/api/producto/1/stock?quantity=9  ///para actualizar el stock
-	 * http://localhost:8081/api/producto/1/estado?estado=2 //para buscar los productos que esten en venta/caducados
-	 * http://localhost:8081/api/producto/nombre/4 ///para buscar la ubicacion del producto por el id product
-	 * http://localhost:8081/api/producto/listar/ //para listar los productos que tengan stock menor al minimo
+	 * http://localhost:8081/api/producto/1/stock?quantity=9    ///para actualizar el stock
+	 * http://localhost:8081/api/producto/1/estado?estado=2  //para buscar los productos que esten en venta/caducados
+	 * http://localhost:8081/api/producto/nombre/4   ///para buscar la ubicacion del producto por el id product
+	 * http://localhost:8081/api/producto/listar/   //para listar los productos que tengan stock menor al minimo
 <<<<<<< HEAD
-	 * http://localhost:8081/api/producto/inventario/  //para realizar el inventario
+	 * http://localhost:8081/api/producto/inventario/    //para realizar el inventario
 =======
-	 * http://localhost:8081/api/producto/valoracion/1/valoracion?valoracion=3.5 // valoracion del producto
-	 * http://localhost:8081/api/producto/caducados//verificar productos caducados
+	 * http://localhost:8081/api/producto/valoracion/1/valoracion?valoracion=3.5    // valoracion del producto
+	 * http://localhost:8081/api/producto/caducados/     /verificar productos caducados
 >>>>>>> ef04d007eb3c2d77b2593a73d76df0bacbced4e7
 	 */
 	
