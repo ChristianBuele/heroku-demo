@@ -245,13 +245,17 @@ public ResponseEntity<List<Usuario>>login(@PathVariable  String correo,@RequestP
 	Usuario salida= repoUsuario.findByCorreo(correo);
 	if(salida!=null) {
 		System.out.println("el usuario tiene conta "+salida.getContraseña());
-		
 		if(contra.equals(salida.getContraseña())) {
 			x.add(salida);
 			return ResponseEntity.ok(x);
 		}
 	}
 	return null;
+}
+@PostMapping
+public Producto guardarProducto(@RequestBody Producto producto) { //@reques para transformar de json a  java
+	System.out.println("Producto a agregar "+producto.getNombre()+" con id "+producto.getId());
+	return servicios.save(producto);
 }
 	/* @GetMapping(value = "/{id}/cantidad")
 	    public ResponseEntity<ProductoGI> venderProduct(@PathVariable  int id ,@RequestParam(name = "cantidad", required = true) Integer cantidad){
@@ -281,10 +285,7 @@ public ResponseEntity<List<Usuario>>login(@PathVariable  String correo,@RequestP
 		});
 		
 	}
-	@PostMapping//para ingresae
-	public Producto guardarProducto(@RequestBody Producto producto) { //@reques para transformar de json a  java
-		return servicios.save(producto);
-	}
+	
 	
 	@PutMapping
 	public Producto actualizarProducto(@RequestBody Producto producto) {
