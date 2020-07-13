@@ -124,5 +124,18 @@ public class ProductoServicioImplementado implements ProductoServicio {
 	}
 
 
+	@Override
+	public Producto addDescuento(int id, double descuento) {
+		Producto pro=getProductoById(id);
+		pro.setDescuento(descuento);
+		Estado estado = new Estado();
+		estado.setId_estado(3);
+		estado.setNombre_estado("producto promocion");
+		pro.setEstado(estado);
+		return servicio.save(pro);
+	}
+	
+
+
 	
 }

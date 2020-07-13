@@ -196,13 +196,22 @@ public ResponseEntity<Inventario> obtenerInventario(){
 @GetMapping(value = "valoracion/{id}/valoracion")
 public ResponseEntity<Producto> updateValoracion(@PathVariable  int id ,@RequestParam(name = "valoracion", required = true) Double valoracion){
     Producto product = producto.updateValoracion(id, valoracion);
+    
     if (product == null){
         return ResponseEntity.notFound().build();
     }
     return ResponseEntity.ok(product);
 }
 
-
+@GetMapping(value="descuento/{id}/descuento")
+public ResponseEntity<Producto> addPromo(@PathVariable  int id ,@RequestParam(name = "descuento", required = true) Double descuento){
+	System.out.println("entra aa dar descuento de "+descuento);
+	Producto product=producto.addDescuento(id, descuento);
+	 if (product == null){
+	        return ResponseEntity.notFound().build();
+	    }
+	    return ResponseEntity.ok(product);
+}
 
 @GetMapping(value="caducados/")
 public ResponseEntity<List<Producto>> buscarProductosCaducados() throws java.text.ParseException{	
@@ -319,6 +328,8 @@ public Producto guardarProducto(@RequestBody Producto producto) { //@reques para
 =======
 	 * http://localhost:8081/api/producto/valoracion/1/valoracion?valoracion=3.5    // valoracion del producto
 	 * http://localhost:8081/api/producto/caducados/     /verificar productos caducados
+	 * http://localhost:8081/api/producto/3/stock?quantity=9,8  //PARA ACTUALIZAR STOCK Y PRECIOS
+	 * http://localhost:8081/api/producto/3/cantidad?cantidad=70   ///para vender
 >>>>>>> ef04d007eb3c2d77b2593a73d76df0bacbced4e7
 	 */
 	

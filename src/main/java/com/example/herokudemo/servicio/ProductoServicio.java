@@ -18,6 +18,7 @@ public interface ProductoServicio {
 	public List<Producto> listarProductosAgotados();
 	public Producto updateValoracion(int id, double valoracion);
 	public Producto calcularPrecio(int id,double precio);
+	public Producto addDescuento(int id, double descuento);
 	/*public Producto actualizarEstado();
 	public Producto getAllProductos();
 	public Producto getProductosCaducados();
