@@ -239,11 +239,17 @@ public ResponseEntity<List<Producto>> buscarProductosCaducados() throws java.tex
 	return ResponseEntity.ok(salida);
 }
 public static Date ParseFecha(String fecha) throws java.text.ParseException
-{
+{	try {
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
     Date fechaDate = null;
     fechaDate = formato.parse(fecha);
     return fechaDate;
+}catch(Exception e) {
+	SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+    Date fechaDate = null;
+    fechaDate = formato.parse(fecha);
+    return fechaDate;
+}
     
 }
 
@@ -330,6 +336,7 @@ public Producto guardarProducto(@RequestBody Producto producto) { //@reques para
 	 * http://localhost:8081/api/producto/caducados/     /verificar productos caducados
 	 * http://localhost:8081/api/producto/3/stock?quantity=9,8  //PARA ACTUALIZAR STOCK Y PRECIOS
 	 * http://localhost:8081/api/producto/3/cantidad?cantidad=70   ///para vender
+	 * http://localhost:8081/api/producto/descuento/1/descuento?descuento=10  //para agregar promocion al producto
 >>>>>>> ef04d007eb3c2d77b2593a73d76df0bacbced4e7
 	 */
 	
