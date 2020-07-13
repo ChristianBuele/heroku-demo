@@ -48,8 +48,13 @@ public class Controlador {
 	ProductoServicio producto;
 
 	 @GetMapping(value = "/{id}/stock")
-    public ResponseEntity<Producto> updateStockProduct(@PathVariable  int id ,@RequestParam(name = "quantity", required = true) Integer quantity){
-        Producto product = producto.updateStock(id, quantity);
+    public ResponseEntity<Producto> updateStockProduct(@PathVariable  int id ,@RequestParam(name = "quantity", required = true) String quantity){
+		 
+		String [] x=quantity.split(",");
+		Double costo=Double.parseDouble(x[1]);
+		Integer cantidad=Integer.parseInt(x[0]);
+		System.out.println("Actualizando: stock="+cantidad+" costo="+costo);
+        Producto product = producto.updateStock(id, cantidad,costo);
         if (product == null){
             return ResponseEntity.notFound().build();
         }
@@ -173,7 +178,6 @@ public ResponseEntity<Inventario> obtenerInventario(){
 		}else {
 			precioPromocion+=producto.getPrecio_producto()*producto.getStock_producto();
 			tP+=producto.getStock_producto();
-
 		}
 	}
 	Inventario inventario= new Inventario();
@@ -197,6 +201,8 @@ public ResponseEntity<Producto> updateValoracion(@PathVariable  int id ,@Request
     }
     return ResponseEntity.ok(product);
 }
+
+
 
 @GetMapping(value="caducados/")
 public ResponseEntity<List<Producto>> buscarProductosCaducados() throws java.text.ParseException{	

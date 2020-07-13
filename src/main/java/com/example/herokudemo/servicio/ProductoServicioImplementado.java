@@ -21,14 +21,16 @@ public class ProductoServicioImplementado implements ProductoServicio {
 	Repositorio servicio;
 	
 	@Override
-	public Producto updateStock(int id, int cantidad) {
+	public Producto updateStock(int id, int cantidad,double costo) {
 		// TODO Auto-generated method stub
 		Producto productDB = getProductoById(id);
+		System.out.println("Producto="+productDB);
         if (null == productDB){
             return null;
         }
         int stock =  productDB.getStock_producto() + cantidad;
-        productDB.setStock_producto(stock);;
+        calcularPrecio(id, costo);
+        productDB.setStock_producto(stock);
         return servicio.save(productDB);
 	}
 	
@@ -100,7 +102,26 @@ public class ProductoServicioImplementado implements ProductoServicio {
         product.setValoracion(valoracion);
         return servicio.save(product);
         }
-
+	@Override
+	public Producto calcularPrecio(int id, double costo) {
+		double gananciaMinima=10.0;
+		double gananciaMaxima=30.0;
+		Producto productDB = getProductoById(id);
+        if (null == productDB){
+            return null;
+        }
+        double porcentajeGananciaActual=(100*productDB.getPrecio_producto())/(costo*2);
+        if(porcentajeGananciaActual>=gananciaMinima && porcentajeGananciaActual<=gananciaMaxima) {
+        	System.out.print("No Actualizo  precio");
+        	return servicio.save(productDB);
+        }else {
+        	System.out.print("Actualizando precio");
+        	double precio=costo+costo*(0.3);
+        	productDB.setPrecio_producto(precio);
+        	return servicio.save(productDB);
+        }
+        
+	}
 
 
 	
